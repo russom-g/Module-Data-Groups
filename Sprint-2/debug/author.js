@@ -16,4 +16,4 @@ for (const value of Object.values(author)) {
 }
 
 // Predict: it will return undefined.
-// Explain: objects values are accessed by including Object.values(author) 
+// Explain: objects values are accessed by including Object.values(author)
