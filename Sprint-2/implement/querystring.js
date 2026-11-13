@@ -8,10 +8,14 @@ function parseQueryString(queryString) {
     if (!pair) {
       continue;
     }
-    const [key, ...value] = pair.replace(/\+/g, " ").split("=");
-    queryParams[decodeURIComponent(key)] = decodeURIComponent(
-      value.join("=").replace(/\+/g, " ")
-    );
+    const everything = pair.split("=");
+    const key = decodeURIComponent(everything.shift().replace(/\+/g, " "));
+    const value = decodeURIComponent(everything.join("=").replace(/\+/g, " "));
+    if (queryParams[key]) {
+      queryParams[key] = [].concat(queryParams[key], value);
+    } else {
+      queryParams[key] = value;
+    }
   }
   return queryParams;
 }
